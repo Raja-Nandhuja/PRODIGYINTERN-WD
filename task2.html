@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stopwatch Web App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #222;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #display {
+      font-size: 3rem;
+      font-weight: bold;
+      background: #333;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      letter-spacing: 2px;
+      min-width: 250px;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    button {
+      background: #444;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background: #666;
+    }
+    button:disabled {
+      background: #222;
+      cursor: default;
+      color: #555;
+    }
+    #laps {
+      width: 100%;
+      max-width: 400px;
+      background: #333;
+      border-radius: 10px;
+      padding: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #laps h2 {
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 1.25rem;
+      border-bottom: 1px solid #555;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    #laps ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    #laps ul li {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #555;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Stopwatch</h1>
+  <div id="display">00:00:00.000</div>
+
+  <div class="buttons">
+    <button id="startPauseBtn">Start</button>
+    <button id="lapBtn" disabled>Lap</button>
+    <button id="resetBtn" disabled>Reset</button>
+  </div>
+
+  <div id="laps">
+    <h2>Laps</h2>
+    <ul id="lapsList"></ul>
+  </div>
+
+  <script>
+    let startTime = 0;
+    let elapsedTime = 0;
+    let timerInterval;
+    let running = false;
+    let laps = [];
+
+    const display = document.getElementById('display');
+    const startPauseBtn = document.getElementById('startPauseBtn');
+    const lapBtn = document.getElementById('lapBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const lapsList = document.getElementById('lapsList');
+
+    function timeToString(time) {
+      const date = new Date(time);
+      const hours = String(date.getUTCHours()).padStart(2, '0');
+      const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+      const milliseconds = String(date.getUTCMilliseconds()).padStart(3, '0');
+      return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+    }
+
+    function print(txt) {
+      display.textContent = txt;
+    }
+
+    function start() {
+      startTime = Date.now() - elapsedTime;
+      timerInterval = setInterval(() => {
+        elapsedTime = Date.now() - startTime;
+        print(timeToString(elapsedTime));
+      }, 10);
+      running = true;
+      startPauseBtn.textContent = 'Pause';
+      lapBtn.disabled = false;
+      resetBtn.disabled = false;
+    }
+
+    function pause() {
+      clearInterval(timerInterval);
+      running = false;
+      startPauseBtn.textContent = 'Start';
+      lapBtn.disabled = true;
+    }
+
+    function reset() {
+      clearInterval(timerInterval);
+      print('00:00:00.000');
+      elapsedTime = 0;
+      laps = [];
+      renderLaps();
+      running = false;
+      startPauseBtn.textContent = 'Start';
+      lapBtn.disabled = true;
+      resetBtn.disabled = true;
+    }
+
+    function lap() {
+      laps.push(elapsedTime);
+      renderLaps();
+    }
+
+    function renderLaps() {
+      lapsList.innerHTML = '';
+      laps.forEach((lapTime, index) => {
+        const li = document.createElement('li');
+        li.textContent = `Lap ${index + 1}: ${timeToString(lapTime)}`;
+        lapsList.appendChild(li);
+      });
+    }
+
+    startPauseBtn.addEventListener('click', () => {
+      if (!running) {
+        start();
+      } else {
+        pause();
+      }
+    });
+
+    lapBtn.addEventListener('click', () => {
+      if (running) {
+        lap();
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      reset();
+    });
+  </script>
+</body>
+</html>
