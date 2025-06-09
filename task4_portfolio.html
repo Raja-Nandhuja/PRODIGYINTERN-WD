@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raja Nandhuja | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa, #e0f7fa);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-top: 1rem;
+    }
+
+    nav {
+      background: #0072ff;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #0072ff;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #00c6ff;
+      display: inline-block;
+    }
+
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills li {
+      background: #e0f7fa;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-weight: 600;
+    }
+
+    .project {
+      background: white;
+      border-left: 6px solid #00c6ff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .contact p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: #0072ff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Raja Nandhuja S</h1>
+    <p>Creative Web Developer & AI Enthusiast</p>
+    <img src="C:\Users\rajan\Downloads\20221103_212704.jpg" alt="Profile Photo">
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a web developer and pre-final year student with a passion for crafting user-centric digital solutions. My expertise spans front-end development, AI projects, and building real-time IoT systems.</p>
+    <p><strong>Education:</strong> B.Tech in Computer Science (2022–2026)</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>JavaScript</li>
+      <li>Java</li>
+      <li>Data Science/Machine Learning</li>
+      <li>Python</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>TempTrack (IoT Monitoring)</h3>
+      <p>Real-time temperature tracking with NodeMCU and ThingSpeak for monitoring heat-emitting devices.</p>
+    </div>
+    <div class="project">
+      <h3>Digital pill box</h3>
+      <p>medication reminder system featuring customizable dosage alerts and a user-friendly interface, improving medication adherence among beta users by 40% within the first month.
+</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Email:rajanandhuja.s@gmail.com</p>
+    <a href="https://linkedin.com/in/raja-nandhuja08">connect with me in linkedin</a><br>
+    <a href="https://github.com/Raja-Nandhuja">catch me in github</a><br>
+  </section>
+
+  <footer>
+    &copy; 2025 Raja Nandhuja S | Designed with ❤️ and Code
+  </footer>
+
+</body>
+</html>
